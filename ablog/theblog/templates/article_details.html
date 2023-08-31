@@ -15,12 +15,12 @@
     {{ post.body }}
 
 {% if user.is_authenticated %}
-
-
     <br><br><hr>
-    <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
-    <a class="btn btn-secondary" href="{% url 'update_post' post.pk %}">Edit</a>
-    <a class="btn btn-secondary" href="{% url 'delete_post' post.pk %}">Delete</a>
+        <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
+    {% if user.id == post.author.id %}
+        <a class="btn btn-secondary" href="{% url 'update_post' post.pk %}">Edit</a>
+        <a class="btn btn-secondary" href="{% url 'delete_post' post.pk %}">Delete</a>
+    {% endif %}
 {% else %}
     <br><br><hr>
     <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
