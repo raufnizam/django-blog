@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Add CAtegory {% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+
+
+<h1>Create a Category</h1>
+<div class="form-group">
+<form  method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
+        <button class="btn btn-secondary">Create</button>
+
+</form>
+
+</div>
+
+{% else %}
+    <h3>You're not allowed here and yuh know it.</h3>
+{% endif %}
+    
+{% endblock %}
