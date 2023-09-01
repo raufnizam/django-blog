@@ -20,8 +20,7 @@ class HomeView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Post
-    template_name = 'article_details.html'
-    pk_url_kwarg = 'pk'  # Specify the name of the primary key URL keyword argument
+    template_name = 'article_details.html'  
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
@@ -35,27 +34,56 @@ class AddPostView(CreateView):
     form_class = PostForm
     template_name = 'add_post.html'
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super().get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+
 class AddCAtegoryView(CreateView):
     model = Category
     # form_class = PostForm
     template_name = 'add_category.html'
     fields = '__all__'
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super().get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+    
+
 class UpdatePostView(UpdateView):
     model = Post
     form_class = EditForm
     template_name = 'update_post.html'
+
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super().get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+    
 
 class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
 
+    def get_context_data(self, *args, **kwargs):
+        cat_menu = Category.objects.all()
+        context = super().get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
+    
 
 def category_view(request, cats):
     category_posts = Post.objects.filter(category=cats)
+    cat_menu = Category.objects.all()
+
     context = {
         'cats': cats, 
-        'category_posts': category_posts  
+        'category_posts': category_posts,
+        'cat_menu': cat_menu
     }
     return render(request, "categories.html", context)
