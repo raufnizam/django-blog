@@ -20,5 +20,10 @@
 {% else %}
     <h3>You're not allowed here and yuh know it.</h3>
 {% endif %}
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("name").value = name;
+</script>
     
 {% endblock %}
