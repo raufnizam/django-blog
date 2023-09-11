@@ -20,9 +20,19 @@
     {% if user.id == post.author.id %}
         <a class="btn btn-secondary" href="{% url 'update_post' post.pk %}">Edit</a>
         <a class="btn btn-secondary" href="{% url 'delete_post' post.pk %}">Delete</a>
-    {% endif %}
+    {% endif %} 
+    <hr><br>
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if liked %}
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Dislike | {{ total_likes }}</button>
+        {% else %}   
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like | {{ total_likes }}</button>
+        {% endif %}
+    </form>
 {% else %}
     <br><br><hr>
     <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
+    <button class="btn btn-primary">{{ total_likes }} likes</button>
 {% endif %}
 {% endblock %}
