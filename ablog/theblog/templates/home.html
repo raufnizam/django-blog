@@ -13,8 +13,9 @@
                         <div class="card-body"> 
                             <h5 class="card-title">
                                 <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>
-                            </h5>
-                            <p class="card-text">{{ post.body|slice:":200" }}</p>
+                            </h5><hr>
+                            <p class="card-text">{{ post.snippet }}</p><hr>
+                            <!-- <p class="card-text">{{ post.body|slice:":200"| safe }}</p><hr> -->
                             <p class="card-text">
                                 <small class="text-muted">
                                     {{ post.author.first_name }} {{ post.author.last_name }} - 
