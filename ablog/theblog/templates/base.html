@@ -23,9 +23,25 @@
 
           <!-- User Authentication Links -->
           {% if user.is_authenticated %}
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
-          </li>
+          </li> -->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a>
+                {% if profile.user.id %}
+                    <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a>
+                    <a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show Profile</a>
+                {% else %}
+                    <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a>
+                {% endif %}
+            </div>
+        </li>
+        
           <li class="nav-item">
             <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
           </li>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %} {{ post.author.title }} {% endblock %}
@@ -42,13 +43,21 @@
 <br>
 <div class="card">
     <div class="row">
-        <img src="{{ post.author.profile.profile_pic.url }}" alt="" class="card-image col-md-2">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.profile.profile_pic.url }}" alt="" class="card-image">
+            {% else %}
+                <img src="{% static 'theblog/images/defaut_profilr_pic.jpg' %}" alt="" class="card-image" width="150" height="150">
+            {% endif %}
+        </div>
+
         <div class="col-md-10">
             <div class="card-body">
                 <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
                 <p class="text-muted">
+                    <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a>
                     {% if post.author.profile.website_url %}
-                        <a href="{{ post.author.profile.website_url }}">Website</a>
+                        <a href="{{ post.author.profile.website_url }}"> | Website</a>
                     {% endif %}
                     {% if post.author.profile.twitter_url %}
 
