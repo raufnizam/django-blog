@@ -1,5 +1,6 @@
 from django import forms
-from .models import Post, Category
+from django.contrib.auth import get_user
+from .models import Post, Category, Comment
 
 
 choices = Category.objects.all().values_list('name', 'name')
@@ -36,8 +37,16 @@ class EditForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title here... '}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'You Post here...'}),
-            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'You Snippet here...'}),
-            
-            
+            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'You Snippet here...'}),   
         }
         
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields =  ["body"]
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name here...'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your comment here...'}),
+        }

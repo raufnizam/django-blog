@@ -18,6 +18,28 @@
     {% endif %}
     
     {{ post.body| safe }}
+    <hr>
+
+    <h2 class="mb-4">Comments</h2>
+    {% if not post.comments.all %}
+        <div class="alert alert-info">
+            <h4>No Comments to Show.</h4><br>
+            <a href="{% url 'add_comment' post.pk %}">Add comment</a>
+        </div>
+    {% else %}
+        {% for comment in post.comments.all %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+                </div>
+                <div class="card-body">
+                    {{ comment.body }}
+                </div>
+            </div>
+        {% endfor %}
+        <a href="{% url 'add_comment' post.pk %}">Add comment</a>
+    {% endif %}
+    
 
 {% if user.is_authenticated %}
     <br><br><hr>
