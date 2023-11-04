@@ -5,6 +5,8 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from markdownx.models import MarkdownxField
 
+
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
 

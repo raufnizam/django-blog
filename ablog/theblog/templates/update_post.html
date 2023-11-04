@@ -11,7 +11,7 @@
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.as_p }}
-                <a class="btn btn-secondary" href="{% url 'article_detail' post.pk %}">Back</a>
+                <a class="btn btn-secondary" href="{% url 'blog:article_detail' post.pk %}">Back</a>
                 <button class="btn btn-secondary">Update</button>
         </form>
         </div>

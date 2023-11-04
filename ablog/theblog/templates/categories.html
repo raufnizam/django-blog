@@ -10,7 +10,7 @@
     <ul>
         {% for post in category_posts %}
             <li>
-                <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>
+                <a href="{% url 'blog:article_detail' post.pk %}">{{ post.title }}</a>
                 - {{ post.author.first_name }} {{ post.author.last_name }}
                 - {{ post.category }}
                 - {{ post.post_date|date }}<br>
@@ -23,5 +23,5 @@
 {% else %}
     <h3>Sorry this page does not exist.</h3>
 {% endif %}
-    <a class="btn btn-secondary" href="{% url 'home' %}">To Home</a>
+    <a class="btn btn-secondary" href="{% url 'blog:home' %}">To Home</a>
 {% endblock %}

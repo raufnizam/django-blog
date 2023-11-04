@@ -1,0 +1,259 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    scroll-snap-type: y mandatory; /* Enable mandatory vertical scrolling */
+    overflow-y: scroll; /* Allow vertical scrolling */
+}
+
+
+.top-color{
+    background-color: #79AC78; /* Background color for the navigation bar */
+    padding: 15px;
+}
+/* Style the navigation bar */
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+/* Style the left and right navigation lists */
+.left_nav ul, .right_nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Style the navigation list items */
+.left_nav li, .right_nav li {
+    margin-right: 20px;
+}
+
+/* Style the links */
+.left_nav a, .right_nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+/* Add a hover effect to the links */
+.left_nav a:hover, .right_nav a:hover {
+    text-decoration: underline;
+    color: #609966;
+}
+
+/* Style the main title */
+.main_title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Adjust spacing for smaller screens */
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+    }
+
+    .left_nav, .right_nav {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .left_nav ul, .right_nav ul {
+        flex-direction: column;
+    }
+
+    .left_nav li, .right_nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* LAnding Section  */
+.page {
+    scroll-snap-align: start; /* Align the start of each page to the start of the viewport */
+    scroll-snap-stop: always; /* Ensure precise scrolling to the next page */
+    /* Additional styling for your pages as needed */
+}
+
+/* Style for the landing page section */
+#landing-page_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #D0E7D2; /* Background color for the section */
+    height: 30.3rem;
+}
+.container{
+    width: 95%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+/* Style for the text container (left side) */
+.text {
+    flex: 1; /* Take up the available space */
+    padding: 20px;
+    text-align: left;
+    padding: 3rem;
+}
+
+/* Style for the text content */
+.text-main {
+    font-size: 60px; /* Larger text size */
+    font-weight: bold;
+    /* margin-left: 20%;
+    margin-top: 40%;
+    margin-right: 20%; */
+}
+.content{
+    font-size: 20px;
+    margin: 2%; 
+}
+.content p{
+    margin-top: 1rem;
+}
+.content h1 > span{
+    padding: 1rem 0;
+}
+.content h1 {
+    margin-top: .75rem;
+}
+
+
+.image {
+    flex: 1;
+    /* background-image: url("{% static 'allIn/images/side.png' %}");  */
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 550px;
+    width: 500px;
+    color: #333;
+}
+
+
+/* stiching css */
+
+
+.get-started-button {
+    display: inline-block;
+    background-color: #79AC78; 
+    color: #fff; 
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 2rem;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+
+    /* margin-left: 350px; */
+}   
+.get-started-button:hover{
+    background-color: #609966;
+}
+
+
+
+/* Card Container */
+.card-container {
+    max-width: 40%;
+}
+
+/* Card */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Card Content */
+.card-content {
+    font-size: 16px;
+}
+
+/* Card Image */
+.card-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+
+/* Add this CSS to your existing CSS file */
+.container_tools {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.container_card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    max-width: 80%; /* Adjust this width as needed */
+    width: 100%;
+}
+
+.title_text {
+    font-size: 24px;
+    color: #333;
+}
+
+.tools_container {
+    display: flex;
+    justify-content: space-around; /* Horizontal space between items */
+    align-items: center;
+    flex-wrap: wrap; /* Wrap items to the next line if necessary */
+    margin-top: 20px;
+    padding: 3.5rem;
+}
+
+.body_of_tools {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;  
+    margin-bottom: .4rem;
+    margin-right: .4rem;
+    align-items: center;
+}
+
+.tool_image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    margin-bottom: .1rem;
+}
+
+.small_text {
+    font-size: 16px;
+    color: #777;
+}
+
+
+
+

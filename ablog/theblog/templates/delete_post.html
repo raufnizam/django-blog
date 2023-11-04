@@ -12,7 +12,7 @@
 <form  method="POST">
         {% csrf_token %}
         <strong>Are yuh sure to delete?</strong><br><br>
-        <a class="btn btn-secondary" href="{% url 'article_detail' post.pk %}">Back</a>
+        <a class="btn btn-secondary" href="{% url 'blog:article_detail' post.pk %}">Back</a>
         <button class="btn btn-secondary">Delete</button>
 
 </form>
