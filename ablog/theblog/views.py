@@ -18,7 +18,7 @@ def likeView(request, pk):
     else:
         post.likes.add(request.user)
         liked = True
-    return HttpResponseRedirect(reverse('blog:article_detail', args=[str(pk)]))
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
 
 
 class HomeView(ListView):
@@ -34,31 +34,29 @@ class HomeView(ListView):
 
 class ArticleDetailView(DetailView):
     model = Post
-    template_name = 'article_details.html'
+    template_name = 'article_details.html'  
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
         context = super().get_context_data(*args, **kwargs)
 
-        post = self.get_object()
-        total_likes = post.total_likes()
+        see = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = see.total_likes()
 
         liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        if see.likes.filter(id=self.request.user.id).exists():
+            liked =True
 
         context["cat_menu"] = cat_menu
         context["total_likes"] = total_likes
         context["liked"] = liked
-        context["profile_id"] = post.author.profile.id  # Include the profile_id
         return context
+
 
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
-    success_url = reverse_lazy('blog:home')  # Replace 'blog:home' with your actual URL name
-
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
@@ -91,13 +89,12 @@ class AddCAtegoryView(CreateView):
         context["cat_menu"] = cat_menu
         return context
     
-    def get_success_url(self):
-        return reverse_lazy('blog:home')
 
 class UpdatePostView(UpdateView):
     model = Post
     form_class = EditForm
     template_name = 'update_post.html'
+    success_url = reverse_lazy('blog:home')
     
 
     def get_context_data(self, *args, **kwargs):
@@ -105,10 +102,6 @@ class UpdatePostView(UpdateView):
         context = super().get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         return context
-    
-    def get_success_url(self):
-        # Specify the success URL after updating a post
-        return reverse('blog:article_detail', kwargs={'pk': self.object.pk})
     
 
 class DeletePostView(DeleteView):
@@ -123,20 +116,16 @@ class DeletePostView(DeleteView):
         return context
     
 
-
 def category_view(request, cats):
     category_posts = Post.objects.filter(category=cats)
     cat_menu = Category.objects.all()
+    has_posts = {category: Post.objects.filter(category=category).exists() for category in cat_menu}
 
     context = {
-        'cats': cats, 
+        'cats': cats,
         'category_posts': category_posts,
-        'cat_menu': cat_menu
+        'cat_menu': cat_menu,
+        'has_posts': has_posts
     }
-
-    # Use the correct URL name for your home page in the reverse function
-    home_url = reverse('blog:home')
-    context['home_url'] = home_url
-
     return render(request, "categories.html", context)
-
+    

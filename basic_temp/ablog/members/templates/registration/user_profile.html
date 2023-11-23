@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+    <br><br>    
+    <h1>User profile</h1>
+    <br>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-2">
+                {% if page_user.profile_pic %}
+                    <img src="{{ page_user.profile_pic.url }}" alt="" class="card-image">
+                {% else %}
+                    <img src="{% static 'theblog/images/defaut_profilr_pic.jpg' %}" alt="" class="card-image" width="150" height="150">
+                {% endif %}
+            </div>
+
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{ page_user.first_name }} {{ page_user.last_name }}</h5>
+                    <p class="text-muted">
+                        {% if page_user.website_url %}
+                            <a href="{{ page_user.website_url }}"> Website</a>
+                        {% endif %}
+                        {% if page_user.twitter_url %}
+
+                            |<a href="{{ page_user.twitter_url }}">Twitter</a>
+                        {% endif %}
+                    </p>
+                    <p class="card-text text-muted">{{ page_user.bio }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+{% else %}
+    <br><br><br>
+    <h1>You need to be logedin <first class=""></first></h1>
+    <br><br><br>
+{% endif %}        
+{% endblock %}

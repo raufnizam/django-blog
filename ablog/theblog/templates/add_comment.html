@@ -2,7 +2,21 @@
 
 {% block title %}Add Comment {% endblock %}
 {% block content %}
+<style>
+        .form-group {
+            width: 70%;
+            margin: 0 auto;
+            background-color: #427D9D;
+            border-radius: .2rem;
+            padding: 20px;
+        }
+        .a_btn {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 
+<br>
 <h1>Add a Comment</h1>
 <div class="form-group">
 <form  method="POST">
@@ -13,5 +27,6 @@
 </form>
 
 </div>
+<br><br>
     
 {% endblock %}

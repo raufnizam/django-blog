@@ -1,27 +1,130 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Category: {{ cats }}{% endblock %}
 
 {% block content %}
+<style>
+        /* Posts */
+    .card{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .card-body{
+        background-color: #8DC6FF;
+    }
+    .card-text > a{
+        color: #233142;
+        font-weight: bold;
+    }
+    .card-text > a:hover{
+        color: #4F709C;
+        text-decoration: none;
+    }
+
+    .see{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; 
+        gap: 1rem;
+    }
+
+    body{
+        font-family:  "IBM Plex Sans", monospace;
+    }
+    .nav_bar{
+    animation: slideIn 0.8s ease-in-out;
+
+    }
+    @keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+    h1{
+        color: #fff;
+    }
+
+    /* Categor */
+    .list-group-item{
+        background-color: #2E79BA;
+    }
+    .list-group-item > a{
+        color: white;
+    }
+
+    /* Posts */
+    .card{
+        border-width: 0;
+    }
+    .card-body{
+        background-color: #1B262C;
+        color: #fff;
+        
+   
+    }
+    .card-title > a{
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .card-text > a{
+        color: #fff;
+        font-size: 1.5rem;
+    }
+    .card-text > a:hover{
+        color: #4F709C;
+        text-decoration: none;
+    }
+
+</style>
 
 {% if category_posts %}
     <br>
-    <h1>{{ cats }} Category</h1><br>
+    <div class="see">
+        <a href="{% url 'blog:home' %}">
+            <img src="{% static 'theblog\images\undo.png' %}" alt="back button" width="40px" height="40px">
+        </a>
+        <h1>{{ cats }} Category</h1><br>
+    </div>
+    <br>
     <ul>
         {% for post in category_posts %}
-            <li>
-                <a href="{% url 'blog:article_detail' post.pk %}">{{ post.title }}</a>
-                - {{ post.author.first_name }} {{ post.author.last_name }}
-                - {{ post.category }}
-                - {{ post.post_date|date }}<br>
-                {{ post.body|slice:":200" }}
-            </li> 
-            <br>
-        {% endfor %}
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body"> 
+                        <h5 class="card-title">
+                            <a href="{% url 'blog:article_detail' post.pk %}">{{ post.title }}</a>
+                        </h5><hr>
+                        <p class="card-text"><a href="{% url 'blog:article_detail' post.pk %}">{{ post.snippet }}</a></p><hr>
+                        <!-- <p class="card-text">{{ post.body|slice:":200"| safe }}</p><hr> -->
+                        <p class="card-text">
+                            <small class="text-muted">
+                                {{ post.author.first_name }} {{ post.author.last_name }} - 
+                                {% if post.category %}
+                                    <a href="{% url 'blog:category' post.category %}">{{ post.category }}</a>
+                                {% else %}
+                                    No Category Available
+                                {% endif %}
+                                - {{ post.post_date|date }}
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
     </ul>
 
-{% else %}
+{% else %} <br>
     <h3>Sorry this page does not exist.</h3>
+    <br>
+    <a href="{% url 'blog:home' %}" class="btn btn-grey">Home</a>
 {% endif %}
-    <a class="btn btn-secondary" href="{% url 'blog:home' %}">To Home</a>
 {% endblock %}

@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # OWN
-    'allIn',
     'theblog',
     'members',
     'ckeditor',
     'markdownx',
+    'landing',
     
 ]
 

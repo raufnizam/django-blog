@@ -5,8 +5,6 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from markdownx.models import MarkdownxField
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
@@ -51,7 +49,7 @@ class Post(models.Model):
         return self.title + " | " + str(self.author)
     
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('home')  
 
 
 class Comment(models.Model):

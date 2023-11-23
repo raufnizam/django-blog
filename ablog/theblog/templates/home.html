@@ -1,36 +1,117 @@
 {% extends 'base.html' %}
 
 {% block title %}Posts{% endblock %}
+{% block style %}
+
+{% endblock %}
+
 
 {% block content %}
+
+
+<style>
+    body{
+        font-family:  "IBM Plex Sans", monospace;
+    }
+    .nav_bar{
+    animation: slideIn 0.8s ease-in-out;
+
+    }
+    @keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+    h1{
+        color: #fff;
+    }
+
+    /* Categor */
+    .list-group-item{
+        background-color: #2E79BA;
+    }
+    .list-group-item > a{
+        color: white;
+    }
+
+    /* Posts */
+    .card{
+        border-width: 0;
+    }
+    .card-body{
+        background-color: #1B262C;
+        color: #fff;
+        
+   
+    }
+    .card-title > a{
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .card-text > a{
+        color: #fff;
+        font-size: 1.5rem;
+    }
+    .card-text > a:hover{
+        color: #4F709C;
+        text-decoration: none;
+    }
+
+</style>
     <br>
-    <h1>Posts</h1><br>
-    <div class="container">
-        {% for post in object_list %}
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body"> 
-                            <h5 class="card-title">
-                                <a href="{% url 'blog:article_detail' post.pk %}">{{ post.title }}</a>
-                            </h5><hr>
-                            <p class="card-text">{{ post.snippet }}</p><hr>
-                            <!-- <p class="card-text">{{ post.body|slice:":200"| safe }}</p><hr> -->
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    {{ post.author.first_name }} {{ post.author.last_name }} - 
-                                    {% if post.category %}
-                                        <a href="{% url 'blog:category' post.category %}">{{ post.category }}</a>
-                                    {% else %}
-                                        No Category Available
-                                    {% endif %}
-                                    - {{ post.post_date|date }}
-                                </small>
-                            </p>
+    
+    <h1 >All Posts</h1><br>
+    <div class="container see">
+        <div class="row">
+            <div class="col-md-2 categories-left" >
+                <!-- Left Categories -->
+                {% if cat_menu %}
+                    <ul class="list-group" >
+                        {% for item in cat_menu %}
+                            <li class="list-group-item">
+                                <a href="{% url 'blog:category' item %}">{{ item }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-10 stuff">
+                <!-- Posts Content -->
+                {% for post in object_list %}
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body"> 
+                                    <h5 class="card-title">
+                                        <a href="{% url 'blog:article_detail' post.pk %}">{{ post.snippet }}</a>
+                                    </h5>
+                                    <!-- <p class="card-text"><a href="{% url 'blog:article_detail' post.pk %}">{{ post.snippet }}</a></p> -->
+                                    <p class="card-text">{{ post.body|slice:":200"| safe}}</p><hr>
+                                    <p class="card-text">
+                                        <small class="text-muted">
+                                            {{ post.author.first_name }} {{ post.author.last_name }} - 
+                                            {% if post.category %}
+                                                <a href="{% url 'blog:category' post.category %}">{{ post.category }}</a>
+                                            {% else %}
+                                                No Category Available
+                                            {% endif %}
+                                            - {{ post.post_date }}
+                                        </small>
+                                    </p>
+                                </div>
+                            </div><br>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     </div>
+
 {% endblock %}

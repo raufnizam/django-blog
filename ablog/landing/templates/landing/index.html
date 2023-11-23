@@ -1,0 +1,67 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postext</title>
+    <link rel="stylesheet" href="{% static 'landing/css/index.css' %}">
+</head>
+<body>
+    <section id="first_page">
+        <div class="container">
+
+            <div class="stripes">
+                <div class="line_one"></div>
+                <div class="line_two"></div>
+            </div>
+            <nav>
+                <div class="logo">
+                    <span>PosText</span>
+                </div>
+                <ul>
+                    <li><a href="{% url 'blog:home' %}">Blog</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <!-- <div class="search">
+                    <i class="fa-search fa"></i>
+                </div>
+                <div class="menu">
+                    <i class="fa-bars fa"></i>
+                </div> -->
+            </nav>
+            <div class="img">
+                <img src="{% static 'landing/assets/tip_jar.png' %}" alt="">
+            </div>
+            <div class="title">
+                <span>PosText</span>
+                <p>Post = Blog, Text = Text Tools</p>
+            </div>
+            <div class="btn">
+                <!-- <div class="tools">
+                    <a href="#second_page">Tools</a>
+                </div> -->
+                <a href="{% url 'blog:home' %}">Blog</a>
+            </div>
+            <div class="year">2023*</div>
+            <!-- <div class="media">
+                <ul>
+                    <li><i class="fa-facebook fa"></i></li>
+                    <li><i class="fa-twitter fa"></i></li>
+                    <li><i class="fa-instagram fa"></i></li>
+                </ul>
+                </div> -->
+            </div>
+    </section>
+
+    <section id="second_page">
+        <h1>hello</h1><div class="section">
+            <p>lorem1000000</p>
+        </div>
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<h1>Login</h1>
+<div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Username" required><br>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+</div>
+
+{% endblock %}

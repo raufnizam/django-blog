@@ -3,16 +3,45 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
+<style>
+    .form-group {
+        width: 60%;
+        margin: 0 auto;
+        background-color: #2E79BA;
+        border-radius: .2rem;
+        padding: 20px;
+    }
+    .a_btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
 <div class="form-group">
-    <form method="post">
+    <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <div class="form-group">
-            <input type="text" name="username" class="form-control" placeholder="Username"><br>
-            <input type="password" name="password" class="form-control" placeholder="Password">
+        <br>
+        <h1>Login</h1>
+        <br>
+
+        {% if invalid_user %}
+            <div class="alert alert-danger" role="alert">
+                Invalid username!
+            </div>
+        {% endif %}
+
+        {% if invalid_pass %}
+            <div class="alert alert-danger" role="alert">
+                Invalid password!
+            </div>
+        {% endif %}
+
+        <input type="text" name="username" class="form-control" placeholder="Username"><br>
+        <input type="password" name="password" class="form-control" placeholder="Password"><br>
+        <div class="a_btn">
+            <button class="btn btn-secondary">Login</button>
         </div>
-        <button class="btn btn-secondary">Login</button>
+        <br>
     </form>
 </div>
-<a href="{% url 'blog:home' %}">Go to Home</a>
 {% endblock %}

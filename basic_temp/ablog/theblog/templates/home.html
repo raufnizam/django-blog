@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+    <br>
+    <h1>Posts</h1><br>
+    <div class="container">
+        {% for post in object_list %}
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body"> 
+                            <h5 class="card-title">
+                                <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>
+                            </h5><hr>
+                            <p class="card-text">{{ post.snippet }}</p><hr>
+                            <!-- <p class="card-text">{{ post.body|slice:":200"| safe }}</p><hr> -->
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    {{ post.author.first_name }} {{ post.author.last_name }} - 
+                                    {% if post.category %}
+                                        <a href="{% url 'category' post.category %}">{{ post.category }}</a>
+                                    {% else %}
+                                        No Category Available
+                                    {% endif %}
+                                    - {{ post.post_date|date }}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

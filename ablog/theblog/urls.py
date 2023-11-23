@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (HomeView, ArticleDetailView, AddPostView, UpdatePostView, 
                                 DeletePostView, AddCAtegoryView, category_view, likeView, AddCommentView)
 
-app_name = 'blog'
+app_name = "blog"
 
 urlpatterns = [
     path('', HomeView.as_view() , name='home'),
