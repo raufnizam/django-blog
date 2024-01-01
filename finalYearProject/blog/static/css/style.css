@@ -1,0 +1,150 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.top-color{
+    background-color: #79AC78; /* Background color for the navigation bar */
+    padding: 15px;
+}
+/* Style the navigation bar */
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+/* Style the left and right navigation lists */
+.left_nav ul, .right_nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Style the navigation list items */
+.left_nav li, .right_nav li {
+    margin-right: 20px;
+}
+
+/* Style the links */
+.left_nav a, .right_nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+/* Add a hover effect to the links */
+.left_nav a:hover, .right_nav a:hover {
+    text-decoration: underline;
+}
+
+/* Style the main title */
+.main_title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Adjust spacing for smaller screens */
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+    }
+
+    .left_nav, .right_nav {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .left_nav ul, .right_nav ul {
+        flex-direction: column;
+    }
+
+    .left_nav li, .right_nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* LAnding Section  */
+/* Style for the landing page section */
+#landing-page_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #D0E7D2; /* Background color for the section */
+    height: 32rem;
+}
+.container{
+    width: 95%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Style for the text container (left side) */
+.text {
+    flex: 1; /* Take up the available space */
+    padding: 20px;
+    text-align: left;
+    padding: 3rem;
+}
+
+/* Style for the text content */
+.text-main {
+    font-size: 60px; /* Larger text size */
+    font-weight: bold;
+    /* margin-left: 20%;
+    margin-top: 40%;
+    margin-right: 20%; */
+}
+.content{
+    font-size: 20px;
+    margin: 2%; 
+}
+.content p{
+    margin-top: 1rem;
+}
+.content h1 > span{
+    padding: 1rem 0;
+}
+.content h1 {
+    margin-top: .75rem;
+}
+
+/* Style for the image container (right side) */
+/* Style for the image container (right side) */
+.image {
+    flex: 1; /* Take up the available space */
+    background-image: url('./images/job-7291427_1280.png'); /* Add your image URL here */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-size: cover; /* Adjust the image size to cover the container */
+    height: 500px;
+    width: 400px;
+    color: #333;
+}
+
+
+.image img{
+    background-color: #f4f4f4; /* Background color for the section */
+
+}
+/* Style for the "Get Started" button */
+.get-started-button {
+    display: inline-block;
+    background-color: #79AC78; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 2rem;
+    margin-top: 20px;
+    /* margin-left: 350px; */
+}
